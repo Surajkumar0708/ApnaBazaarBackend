@@ -1,7 +1,19 @@
 import { Fruits } from "../models/fruitsModels.js";
+import HomeProduct from "../models/homeProductsModel.js";
 import Grocery from "../models/productModel.js";
 
 // export const productContorller = () => {};
+
+export const getHomeProducts = async (req, res) => {
+  try {
+    const homeProducts = await HomeProduct.find({});
+    res.status(500).send({
+      list: homeProducts,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const setGrocery = async (req, res, next) => {
   try {
@@ -22,9 +34,8 @@ export const getAllProducts = async (req, res, next) => {
     res.status(500).send({
       products,
     });
-    console.log("======= products", products);
   } catch (error) {
-    console.log("====== products error", error);
+    console.log(error);
   }
 };
 
